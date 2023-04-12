@@ -4,6 +4,7 @@ import entity.ClassRoom;
 import entity.Student;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class StudentHandle {
@@ -49,14 +50,16 @@ public class StudentHandle {
         System.out.println("Nhập tên sinh viên muốn xóa");
         String nameRemove = scanner.nextLine();
         int check = 0;
+        List<Student>toRemove = new ArrayList<>();
         for (Student x: classRoom.getStudents()
         ) {
             if (x.getName().equalsIgnoreCase(nameRemove)){
-                classRoom.getStudents().remove(x);
+                toRemove.add(x);
                 System.out.println("Remove thành công");
                 check++;
             }
         }
+        classRoom.getStudents().removeAll(toRemove);
         if (check == 0) System.out.println("Không tìm thấy tên SV !!!");
         return classRoom.getStudents();
     }
